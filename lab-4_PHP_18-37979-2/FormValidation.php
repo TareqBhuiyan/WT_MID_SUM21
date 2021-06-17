@@ -45,7 +45,7 @@
 			$hasError = true;
 		}
 		else{
-			$name=$_POST["name"];
+			$name=htmlspecialchars($_POST["name"]);
 		}
 		if(empty($_POST["username"])){
 			$err_uname="Username Required";
@@ -53,7 +53,7 @@
 		}
 		
 		else{
-			$uname=$_POST["username"];
+			$uname=htmlspecialchars($_POST["uname"]);
 		}
 		if(empty($_POST["password"])){
 			$err_pass="Password Required";
@@ -61,7 +61,7 @@
 		}
 		
 		else{
-			$password=$_POST["password"];
+			$password=htmlspecialchars($_POST["pass"]);
 		}
 		if(empty($_POST["Email"])){
 			$err_email="Email Required";
@@ -69,21 +69,21 @@
 		}
 		
 		else{
-			$email=$_POST["email"];
+			$email=htmlspecialchars($_POST["email"]);
 		}
 		if(empty($_POST["Phone"])){
 			$err_phone="Phone Required";
 			$hasError = true;
 		}
 		else{
-			$phone=$_POST[""];
+			$phone=htmlspecialchars($_POST["phone"]);
 		}
 		if(empty($_POST["adress"])){
 			$err_adress="Adress Required";
 			$hasError = true;
 		}
 		else{
-			$address=$_POST["address"];
+			$address=htmlspecialchars($_POST["address"]);
 		}
 		if(empty($_POST["birth"])){
 			$err_birth="Birth Required";
@@ -91,7 +91,7 @@
 		}
 		
 		else{
-			$birth=$_POST["birth"];
+			$birth=htmlspecialchars($_POST["birth"]);
 		}
 		
 		if(!isset($_POST["gender"])){
@@ -99,21 +99,21 @@
 			$hasError = true;
 		}
 		else{
-			$gender = $_POST["gender"];
+			$gender =htmlspecialchars($_POST["gender"]);
 		}
 		if(!isset($_POST["hearing"])){
 			$err_hearing="Hearing Required";
 			$hasError = true;
 		}
 		else{
-			$hearing = $_POST["hearing"];
+			$hearing =htmlspecialchars($_POST["hearing"]);
 		}
 		if(empty($_POST["bio"])){
 			$err_bio="Bio Required";
 			$hasError = true;
 		}
 		else{
-			$bio = $_POST["bio"];
+			$bio =htmlspecialchars($_POST["bio"]);
 		}
 		
 		if(!$hasError){
@@ -138,12 +138,16 @@
 	}
 ?>
 <html>
-	<head> <tr><h1> Club Member Registration</h1></tr>
+	<head> <title> Club Member Registration</title>
 	</head>
-	<body>
+	 <body>
+	
 		<fieldset>
 			<form action="" method="post">
-				<table >
+				<table border="2" >
+				 <tr>
+				 <th colspan="1"> Club Member Registration</th>
+				 </tr>
 					<tr>
 						<td>Name: </td>
 						<td><input type="text" name="name" value="<?php echo $name;?>" placeholder="Name"></td>
@@ -169,8 +173,17 @@
 					<td> <input type ="text" name="phone" value="<?php echo $phone;?> " placeholder="phone"></td>
 					<td><span><?php echo $err_phone;?></span></td>
 					</tr>
-
 					<tr>
+					<td> Adress : </td>
+					<td> <input type ="text" name="Adress" value="<?php echo $adress;?> " placeholder="address"></td>
+					<td><span><?php echo $err_adress;?></span></td>
+					</tr>
+					<tr>
+					<td> Date of birth : </td>
+					<td> <input type ="text" name="Date of birth " value="<?php echo $birth;?> " placeholder="birth"></td>
+					<td><span><?php echo $err_birth;?></span></td>
+					</tr>
+                    <tr>
 						<td>Gender: </td>
 						<td><input type="radio" value="Male" <?php if($gender == "Male") echo "checked";?> name="gender"> Male <input <?php if($gender == "Female") echo "checked";?> name="gender"  value="Female" type="radio"> Female</td>
 						<td><span><?php echo $err_gender;?></span></td>
