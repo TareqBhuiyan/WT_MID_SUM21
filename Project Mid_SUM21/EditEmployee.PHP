@@ -145,7 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			echo $_POST["bio"]."<br>";
 			echo $_POST["department"]."<br>";
 			
-			$arr = $_POST["$name"];
+			$arr = $_POST["name"];
 			
 			
 			foreach($arr as $e){
@@ -158,13 +158,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 	<head>
 		<title>
-			Employee Registration Form
+			Change Employees Information
 		</title>
 	</head>
 	
 	<body align = "center">
 		<h1>
-			Employee Registration Form
+			Change Employees Information
 		</h1>
 		
 		
@@ -356,7 +356,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					<td>
 						Click here to submit -
 					</td>
-					<td align="right" colspan="2"><input type="submit" value="Register"></td>
+					<td align="right" colspan="2"><input type="submit" value="Save"></td>
 				    
 				</tr>
 				

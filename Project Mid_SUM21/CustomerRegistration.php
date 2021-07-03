@@ -1,188 +1,139 @@
 <?php
-    $pic="";
-	$err_pic="";
-	$name="";
-	$err_name="";
-	$cardname="";
-	$err_cardname="";
-	$cardno="";
-	$err_cardno="";
-	$address=""
-	$cvvno="";
-	$err_cvvno="";
-	$err_address="";
-	$cpass="";
-	$err_cpass="";
-	$conpass="";
-	$err_conpass="";
-	$birth="";
-	$err_birth="";
-	$phone="";
-	$err_phone="";
-	$nationality="";
-	$err_nationality="";
+
+$pictureErr = $nameErr = $cardnameErr = $cardtypeErr = $cardnoErr = $cvvnoErr = $addressErr = $emailErr = $passwordErr = $birthErr = $phoneErr = $nationalityErr ="";
+$picture = $name = $cardname = $cardtype = $cardno = $cvvno= $address = $email= $password = $birth = $phone = $nationality ="";
+
+
+$hasError=false;
+
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if (empty($_POST["name"])) {
+    $nameErr = "Name is required";
+	$hasError= true;
+  }
+  else {
+    $name =($_POST["name"]);
+  }
+  if (empty($_POST["picture"])) {
+    $pictureErr = "profile picture is required";
+	$hasError= true;
+  } 
+  else {
+    $picture = htmlspecialchars($_POST["picture"]);
+  }
+  if (empty($_POST["cardname"])) {
+    $cardnameErrErr = "Card name is required";
+	$hasError= true;
+  } 
+  else {
+    $cardname = htmlspecialchars($_POST["cardname"]);
+  }
+   if (empty($_POST["cardtype"])) {
+    $cardtypeErr = "Card Type is required";
+	$hasError= true;
+  } 
+  else {
+    $cardtype = htmlspecialchars($_POST["cardtype"]);
+  }
+  if (empty($_POST["cardno"])) {
+    $cardnoErr = "Card number is required";
+	$hasError= true;
+  } 
+  else {
+    $cardno = htmlspecialchars($_POST["cardno"]);
+  }
+  if (empty($_POST["cvvno"])) {
+    $cvvnoErr = "CVV serial is required";
+	$hasError= true;
+  } 
+  else {
+    $cvvno = htmlspecialchars($_POST["cvvno"]);
+  }
+if (empty($_POST["address"])) {
+    $addressErrErr = "Address is required";
+	$hasError= true;
+  } 
+  else {
+    $address = htmlspecialchars($_POST["address"]);
+  }
+  if (empty($_POST["email"])) {
+    $emailErr = "Email is required";
+	$hasError= true;
+  } else {
+    $email = htmlspecialchars($_POST["email"]);
+  }
+
+  if (empty($_POST["password"])) {
+    $passwordErr = " password is required ";
+	$hasError= true;
+  }
+  else {
+    $password = htmlspecialchars($_POST["password"]);
+  }
+
+  if (empty($_POST["birth"])) {
+    $birthErr= " Birth date required ";
+	$hasError= true;
+  }
+  else {
+    $birth = htmlspecialchars($_POST["birth"]);
+  }
+
+  if (empty( $_POST["nationality"])) {
+    $nationalityErr = "nationality is required";
+	$hasError= true;
+  }
+  else {
+    $nationality = htmlspecialchars($_POST["nationality"]);
 	
-	$hasError=false;
-	
-	function Customer($customer){
-		global $;
-		foreach($customer as $csm){
-			if($csm == $customer){
-				return true;
-			}
-		}
-		return false;
-	}
-	if($_SERVER["REQUEST_METHOD"] == "POST"){
-		
-		if(empty($_POST["name"])){
-			$err_name="Name Required";
-			$hasError = true;
-		}
-		else if(strlen($_POST["name"]) <=2){
-			$err_name="Name Must be greater than 2";
-			$hasError = true;
-		}
-		else{
-			$name=htmlspecialchars($_POST["name"]);
-		}
-		if(empty($_POST["cardname"])){
-			$err_cardname="Cardname Required";
-			$hasError = true;
-		}
-		
-		else{
-			$cardname=htmlspecialchars($_POST["cardname"]);
-		}
-		if(empty($_POST["cardno"])){
-			$err_cardno="Number Required";
-			$hasError = true;
-		}
-		else{
-			$cardno=htmlspecialchars($_POST["cardno"]);
-		}
-		if(empty($_POST["cvvno"])){
-			$err_cvvno="CVVno Required";
-			$hasError = true;
-		}
-		
-		else{
-			$cvvno=htmlspecialchars($_POST["cvvno"]);
-		}
-		
-		if(empty($_POST["address"])){
-			$err_address="Adress Required";
-			$hasError = true;
-		}
-		else{
-			$address=htmlspecialchars($_POST["address"]);
-		}
-		if(empty($_POST["Email"])){
-			$err_eemail="Email Required";
-			$hasError = true;
-		}
-		
-		else{
-			$eemail=htmlspecialchars($_POST["email"]);
-		}
-		
-		if(empty($_POST["cpass"])){
-			$err_cpass="Password Required";
-			$hasError = true;
-		}
-		
-		else{
-			$cpass=htmlspecialchars($_POST["pass"]);
-		}
-		if(empty($_POST["password"])){
-			$err_conpass="Password Required";
-			$hasError = true;
-		}
-		
-		else{
-			$conpass=htmlspecialchars($_POST["pass"]);
-		}
-		
-		
-		if(empty($_POST["birth"])){
-			$err_birth="Birth Required";
-			$hasError = true;
-		}
-		
-		else{
-			$birth=htmlspecialchars($_POST["birth"]);
-		}
-		if(empty($_POST["npic"])){
-			$err_npic="Password Required";
-			$hasError = true;
-		}
-		
-		
-		else{
-			$phone=htmlspecialchars($_POST["phone"]);
-		}
-		
-		if(!isset($_POST["nationality"])){
-			$err_nationality="Merital status Required";
-			$hasError = true;
-		}
-		else{
-			$nationality =htmlspecialchars($_POST["nationality"]);
-		}
-		
-		if(!$hasError){
+  }
+ if(!$hasError){
 			echo $name."<br>";
-			echo $_POST["pic"]."<br>";
-			echo $_POST["name"]."<br>";
+			echo $_POST["picture"]."<br>";
 			echo $_POST["cardname"]."<br>";
+			echo $_POST["cardtype"]."<br>";
+			echo $_POST["Email"]."<br>";
+			echo $_POST["password"]."<br>";
+			echo $_POST["birth"]."<br>";
 			echo $_POST["cardno"]."<br>";
 			echo $_POST["cvvno"]."<br>";
-			echo $_POST["address"]."<br>";
-			echo $_POST["Email"]."<br>";
-			echo $_POST["cpass"]."<br>";
-			echo $_POST["conpass"]."<br>";
-			echo $_POST["birth"]."<br>";
 			echo $_POST["Phone"]."<br>";
 			echo $_POST["nationality"]."<br>";
-			echo $_POST["religion"]."<br>";
 			
-			$arr = $_POST[" "];
+			$arr = $_POST["$name"];
+			
 			
 			foreach($arr as $e){
 				echo "$e <br>";
 			}
 		}
 		
-		
-	}
+}
 ?>
-	
-	
-	
-	
-	
-<html>
+	<html>
 	<head>
 		<title>
-			Customer Registration Form
+			Customer's Membership Registration Form
 		</title>
 	</head>
 	
 	<body align = "center">
 		<h1>
-			Customer Registration Form
+			Customer's Membership Registration Form
 		</h1>
 		
-		<form>
+		<form  method="post" action="<?php echo htmlspecialchars($_SERVER["REQUEST_METHOD"]);?>">
 			<table align = "center">
 			<tr>
 					<td>
 						Upload Your Profile Picture:
 					</td>
 					<td>
-						<input type= "file" name= "pic" value="<?php echo $pic;?>">
+						<input type= "file" name= "picture" value="<?php echo $picture;?>">
 					</td>
-					<td><span><?php echo $err_pic;?></span></td>
+					<td><span><?php echo $pictureErr;?></span></td>
 				</tr>
 				<tr>
 					<td>
@@ -190,32 +141,41 @@
 					</td>
 					
 					<td>
-						<input type= "text" placeholder= "Name" name= "uname" value="<?php echo $name;?>">
+						<input type= "text" placeholder= "Name" name= "name" value="<?php echo $name;?>">
 					</td>
-					<td><span><?php echo $err_uname;?></span></td>
+					<td><span><?php echo $nameErr;?></span></td>
 				</tr>
-				<tr> <td> Card's Name : </td>
-				 <td><input type ="text" placeholder="holders name" name="cname"  value="<?php echo $cname;?>" ></td> 
-				 <td><span><?php echo $err_name;?></span></td>
+				<tr>
+				<td> Card's Name : </td>
+				 <td><input type ="text" name="cardname"  value="<?php echo $cardname;?>" ></td> 
+				 <td><span><?php echo $cardnameErr;?></span></td>
+				 </tr>
+				 <tr>
 				 <td> Card Type:</td>
-				 <td><select><option>VISA</option>
+				 <td><select>
+				 <option>VISA</option>
 				 <option>PLATINUM</option>
 				 <option> MASTER CARD</option>
 				 <option>AMERICAN EXPRESS</option>
-				 </select></td> 
+				 </select>
+				 </td>
 				 </tr>
-				  <tr><td> Card No. </td>
-				    <td><input type="text" placeholder="card number" name="cardno." value="<?php echo $cardno;?>"></td>
-                      <td><span><?php echo $err_cardno;?></span></td>
-					<td>CVV </td><td><input type="text" placeholder="number" name="cvvno." value="<?php echo $cvvno;?>"></td>
-					 <td><span><?php echo $err_cvvno;?></span></td>
+				  <tr>
+				  <td>CVV :</td>
+					 <td><input type="text" name="cvvno" value="<?php echo $cvvno;?>"></td>
+					 <td><span><?php echo $cvvnoErr;?></span></td>
 					</tr>
+					<tr>
+					<td> Card No. : </td>
+				    <td><input type="text" name="cardno" value="<?php echo $cardno;?>"></td>
+                     <td><span><?php echo $cardnoErr;?></span></td>
+					 </tr>
 				  <tr>
 					<td>
 						 Address:
 					</td>
-					<td><input type="text" name="email" value="<?php echo $address;?> " placeholder="Email"></td>
-						 <td><span><?php echo $err_address;?></span></td>
+					<td><input type="text" name="address" value="<?php echo $address;?> " placeholder="Address"></td>
+						 <td><span><?php echo $addressErr;?></span></td>
 					
 					</tr>
 				<tr>
@@ -223,10 +183,9 @@
 						  Email:
 					</td>
 					
-					<td>
-						<td><input type="text" name="email" value="<?php echo $email;?> " placeholder="Email"></td>
-						 <td><span><?php echo $err_email;?></span></td>
-					</td>
+						<td><input type="text" name="email" value="<?php echo $email;?>"></td>
+						<td><span><?php echo $emailErr;?></span></td>
+					
 				</tr>
 				<tr>
 					<td>
@@ -234,8 +193,8 @@
 					</td>
 					
 					<td>
-						<input type= "text" placeholder= "Password" name= "password">
-					</td>
+						<input type= "text" placeholder= "Password" name= "password"></td>
+						<td><span><?php echo $passwordErr;?></span></td>
 				</tr>
 				<tr>
 					<td>
@@ -243,13 +202,13 @@
 					</td>
 					
 					<td>
-						<input type= "text" placeholder= "Password" name= "password">
-					</td>
+						<input type= "text" placeholder= "Password" name= "password"></td>
+						<td><span><?php echo $passwordErr;?></span></td>
 				</tr>
 				<tr> 
 				<td> Date Of Birth : </td>
-				<td> <input type ="text" name="birth" value="<?php echo $birth;?> " placeholder="birth"></td>
-					<td><span><?php echo $err_birth;?></span></td>
+				<td> <input type ="Date" name="birth" value="<?php echo $birth;?> " placeholder="Date of birth"></td>
+					<td><span><?php echo $birthErr;?></span></td>
 				
 				</tr>
 				
@@ -267,7 +226,7 @@
 					<option>+511</option></select>
 					<input type= "text" placeholder= "12345678" name= "phone" value="<?php echo $phone;?>">
 					</td>
-					<td><span><?php echo $err_phone;?></span></td>
+					<td><span><?php echo $phoneErr;?></span></td>
 				</tr>
 				
 				<tr> 
@@ -282,6 +241,10 @@
 				   <option> Germany     </option>
 				   <option> Canada      </option>
 				   </select>
+				   <input type= "text" name= "nationality" value="<?php echo $nationality;?>">
+					</td>
+					<td><span><?php echo $nationalityErr;?></span></td>
+				   
 				   </td>
 				   </tr>
 				   
@@ -290,11 +253,11 @@
 						Click here to submit -
 					</td>
 					
-				     <td>
-						<input type= "submit" value="Confirm">
-					</td>
-				</tr>
+				     <td align="right" colspan="2"><input type="submit" value="Register"></td>
+			      </tr> 
+					
 			</table>
 		</form>
+		<a href="index.html" class="previous">&laquo; Previous</a>
 	</body>
 </html>
